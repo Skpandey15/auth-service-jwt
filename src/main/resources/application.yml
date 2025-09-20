@@ -1,0 +1,37 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/authdb
+    username: auth_user
+    password: auth_pass
+  flyway:
+    schemas: auth
+    baseline-on-migrate: true
+    baseline-version: 1
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    properties:
+      hibernate:
+        default_schema: auth
+        jdbc:
+          lob:
+            non_contextual_creation: true
+  data:
+    redis:
+      host: localhost
+      port: 6379
+  security:
+    oauth2:
+      resourceserver:   # ✅ no dash in 'resourceserver'
+        jwt:
+          public-key-location: classpath:keys/public.pem
+
+server:
+  port: 8081
+
+jwt:
+  private-key-location: file:c:/Users/skp4j/keys/private.pem   # example Linux path
+  public-key-location: file:c:/Users/skp4j/keys/public.pem
+  issuer: "https://auth.example.com"
+  access-token-expiry-seconds: 900
+  refresh-token-expiry-days: 30
