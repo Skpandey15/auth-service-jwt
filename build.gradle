@@ -38,6 +38,7 @@ dependencies {
     testImplementation 'org.testcontainers:testcontainers'
     testImplementation 'org.testcontainers:postgresql'
     implementation 'org.springframework.security:spring-security-crypto:6.2.4'
+    // [CB-SEC] Upgraded from 1.78 to 1.79 to fix CVE-2026-0636 (LDAP injection vulnerability, GHSA-c3fc-8qff-9hwx)
     implementation 'org.bouncycastle:bcprov-jdk18on:1.79'
 }
 
