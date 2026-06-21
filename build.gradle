@@ -38,7 +38,7 @@ dependencies {
     testImplementation 'org.testcontainers:testcontainers'
     testImplementation 'org.testcontainers:postgresql'
     implementation 'org.springframework.security:spring-security-crypto:6.2.4'
-    implementation 'org.bouncycastle:bcprov-jdk18on:1.78'
+    implementation 'org.bouncycastle:bcprov-jdk18on:1.79'
 }
 
 tasks.named('test') {
