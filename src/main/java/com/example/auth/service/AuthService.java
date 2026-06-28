@@ -51,7 +51,7 @@ public class AuthService {
                 .orElseThrow(() -> new RuntimeException("Invalid credentials"));
 
         if (!passwordEncoder.matches(req.getPassword(), user.getPasswordHash())) {
-            throw new RuntimeException("Invalid credentials");
+            throw new IllegalArgumentException("Invalid credentials");
         }
 
         String refreshToken = tokenService.createRefreshToken();
@@ -73,7 +73,7 @@ public class AuthService {
     @Transactional
     public void logout(String refreshToken) {
         if (refreshToken == null || refreshToken.isBlank()) {
-            throw new RuntimeException("Refresh token required");
+            throw new IllegalArgumentException("Refresh token required");
         }
 
         String hashed = tokenService.hash(refreshToken);
@@ -82,7 +82,7 @@ public class AuthService {
                 .orElseThrow(() -> new RuntimeException("Invalid refresh token"));
 
         if (token.getRevokedAt() != null) {
-            throw new RuntimeException("Token already revoked");
+            throw new IllegalStateException("Token already revoked");
         }
 
         token.setRevokedAt(Instant.now());

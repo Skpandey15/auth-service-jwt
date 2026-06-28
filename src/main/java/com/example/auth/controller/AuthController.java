@@ -24,7 +24,10 @@ public class AuthController {
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody LoginRequest req, HttpServletRequest servletReq) {
         String deviceInfo = servletReq.getHeader("User-Agent");
-        String ip = servletReq.getRemoteAddr();
+        String ip = servletReq.getHeader("X-Forwarded-For");
+        if (ip == null || ip.isEmpty()) {
+            ip = servletReq.getRemoteAddr();
+        }
         LoginResponse resp = authService.login(req, deviceInfo, ip);
         return ResponseEntity.ok(resp);
     }

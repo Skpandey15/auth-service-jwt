@@ -29,5 +29,5 @@ public class User {
     @Column(nullable = false)
     private boolean isEmailVerified = false;
 
-    private Instant createdAt = Instant.now();
+    private Instant createdAt;
 }
