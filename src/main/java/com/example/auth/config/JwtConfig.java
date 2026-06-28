@@ -17,7 +17,8 @@ public class JwtConfig {
     @Bean
     public JwtDecoder jwtDecoder() throws Exception {
         var resource = new ClassPathResource("keys/public.pem");
-        var keyBytes = resource.getInputStream().readAllBytes();
+        try (var inputStream = resource.getInputStream()) {
+            var keyBytes = inputStream.readAllBytes();
         String publicKeyContent = new String(keyBytes)
                 .replace("-----BEGIN PUBLIC KEY-----", "")
                 .replace("-----END PUBLIC KEY-----", "")
