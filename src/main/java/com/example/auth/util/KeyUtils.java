@@ -10,7 +10,7 @@ import java.util.Base64;
 public class KeyUtils {
 
     public static PrivateKey loadPrivateKey(String filename) throws Exception {
-        String key = new String(Files.readAllBytes(Paths.get(filename).normalize()));
+        String key = new String(Files.readString(Paths.get(filename).normalize()));
         key = key.replace("-----BEGIN PRIVATE KEY-----", "")
                 .replace("-----END PRIVATE KEY-----", "")
                 .replaceAll("\\s", "");
