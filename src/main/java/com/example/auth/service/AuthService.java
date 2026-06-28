@@ -82,7 +82,7 @@ public class AuthService {
                 .orElseThrow(() -> new RuntimeException("Invalid refresh token"));
 
         if (token.getRevokedAt() != null) {
-            throw new RuntimeException("Token already revoked");
+            throw new IllegalStateException("Token already revoked");
         }
 
         token.setRevokedAt(Instant.now());
