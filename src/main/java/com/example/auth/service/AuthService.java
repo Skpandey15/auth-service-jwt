@@ -73,7 +73,7 @@ public class AuthService {
     @Transactional
     public void logout(String refreshToken) {
         if (refreshToken == null || refreshToken.isBlank()) {
-            throw new RuntimeException("Refresh token required");
+            throw new IllegalArgumentException("Refresh token required");
         }
 
         String hashed = tokenService.hash(refreshToken);
