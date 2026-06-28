@@ -107,7 +107,7 @@ public class TokenService {
     }
 
     public String createRefreshToken() {
-        return UUID.randomUUID().toString() + UUID.randomUUID().toString();
+        return UUID.randomUUID().toString() + "-" + UUID.randomUUID().toString();
     }
 
     public String hash(String token) {
