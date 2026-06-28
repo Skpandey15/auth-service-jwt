@@ -24,7 +24,7 @@ public class RefreshToken {
     private String deviceInfo;
     private String ipAddress;
 
-    private Instant issuedAt = Instant.now();
+    private Instant issuedAt;
     private Instant expiresAt;
     private Instant revokedAt;
 }
